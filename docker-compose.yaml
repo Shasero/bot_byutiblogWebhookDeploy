@@ -5,11 +5,11 @@ services:
       dockerfile: Dockerfile  
     restart: unless-stopped  
     environment:
-      - TOKEN=${TOKEN}
+      #- TOKEN=${TOKEN}
       - NGINX_HOST=${NGINX_HOST}
-      - ADMIN_ID=${ADMIN_ID}
-      - ADMIN_ID2=${ADMIN_ID2}
-      - PHONE=${PHONE} 
+      #- ADMIN_ID=${ADMIN_ID}
+      #- ADMIN_ID2=${ADMIN_ID2}
+      #- PHONE=${PHONE} 
     ports:
       - "3001:3001"
     depends_on:
