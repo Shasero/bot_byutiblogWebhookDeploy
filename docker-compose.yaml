@@ -6,7 +6,7 @@ networks:
 services:
   bot:
     build: 
-      context: './bot'
+      context: ./bot
       dockerfile: Dockerfile  
     restart: unless-stopped  
     environment:
@@ -22,7 +22,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
     environment:
       - NGINX_HOST
     volumes:
