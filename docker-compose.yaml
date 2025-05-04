@@ -4,7 +4,7 @@ networks:
 services:
   bot:
     build: 
-      context: ./bot
+      context: './bot'
       dockerfile: Dockerfile  
     restart: unless-stopped  
     environment:
