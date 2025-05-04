@@ -46,8 +46,8 @@ WEBHOOK_PATH = '/webhook'
 WEBHOOK_URL = f'{WEBHOOK_HOST}{WEBHOOK_PATH}'
 
 # webserver settings
-WEBAPP_HOST = '0.0.0.0' 
-WEBAPP_PORT = 3001 #3001
+WEBAPP_HOST = '89.169.0.89' 
+WEBAPP_PORT = 7000 #3001
 
 
 bot = Bot(token=token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))

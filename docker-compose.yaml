@@ -1,3 +1,6 @@
+networks:
+  def:
+
 services:
   bot:
     build: 
@@ -5,34 +8,37 @@ services:
       dockerfile: Dockerfile  
     restart: unless-stopped  
     environment:
-      #- TOKEN=${TOKEN}
-      - NGINX_HOST=${NGINX_HOST}
-      #- ADMIN_ID=${ADMIN_ID}
-      #- ADMIN_ID2=${ADMIN_ID2}
-      #- PHONE=${PHONE} 
+      - TOKEN
+      - NGINX_HOST
     ports:
-      - "3001:3001"
+      - "7000:7000"
     depends_on:
-      - nginx  
+      - nginx
+    networks:
+      - def  
 
   nginx:
-    image: nginx:1.28.0-alpine
+    image: nginx:stable-alpine
     ports:
       - "80:80"
       - "443:443"
-    restart: unless-stopped
+    restart: always
     environment:
-      - NGINX_HOST=${NGINX_HOST}
+      - NGINX_HOST
     volumes:
-      - ./nginx/templates:/etc/nginx/templates:ro
-      - ./certbot/www:/var/www/certbot:ro
-      - ./certbot/conf:/etc/nginx/ssl:ro
+      - './nginx/first_start/:/etc/nginx/templates/:ro'
+      # - './nginx/templates/:/etc/nginx/templates/:ro'
+      - './certbot/www:/var/www/certbot/:ro'
+      - './certbot/conf/:/etc/nginx/ssl/:ro'
     depends_on:
-      - certbot  
+      - certbot
+    networks:
+      - def   
 
   certbot:
     image: certbot/certbot:v4.0.0
-    command: sh -c "sleep 10 && certbot certonly --standalone -d ${NGINX_HOST} --email your-email@example.com --agree-tos --non-interactive --keep-until-expiring"
     volumes:
-      - ./certbot/www:/var/www/certbot:rw
-      - ./certbot/conf:/etc/letsencrypt:rw
+      - './certbot/www:/var/www/certbot:rw'
+      - './certbot/conf:/etc/letsencrypt:rw'
+    networks:
+      - def 
