@@ -5,6 +5,7 @@ services:
   bot:
     build: 
       context: ./bot
+      env_file: .env
       dockerfile: Dockerfile
     environment:
       - TOKEN=$${TOKEN}
