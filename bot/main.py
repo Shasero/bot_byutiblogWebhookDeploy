@@ -32,7 +32,7 @@ from handlers.outputhandlergaid import Card_Pay_gaid
 from handlers.outputhandlerkurs import Card_Pay_kurs
 
 
-load_dotenv('/.env')
+load_dotenv('./.env')
 
 
 IS_WEBHOOK = 1
